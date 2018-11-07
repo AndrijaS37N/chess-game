@@ -1,7 +1,6 @@
-# chess-game 🚦
+# chess-game 🏁
 <h3>A second year university c++ game project. ♟️</h3>
-<p>C++ is a powerful and an interesting language to work with. Although a bit harder, I liked tinkering with it when I had been writing this chess game. Woo!
-It was made in Visual Studio IDE, but recently rediscovered and reviewed in Xcode.</p>
+<p>C++ is a powerful and an interesting language to work with. Although a bit harder, I liked tinkering with it when I had been writing this chess game. It was made in Visual Studio IDE, but recently was rediscovered and reviewed in Xcode.</p>
 
 #### Project snapshots:
 <p>View 1</p>
