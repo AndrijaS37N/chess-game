@@ -6,8 +6,8 @@
 
 #### Project snapshots:
 <p>View 1</p>
-<img src="screen-shots/view-1.png" alt="View 1">
+<img src="screen-shots/view-1.png" height="600" alt="View 1">
 <p>View 2</p>
-<img src="screen-shots/view-2.png" alt="View 2">
+<img src="screen-shots/view-2.png" height="600" alt="View 2">
 
 
