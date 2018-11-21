@@ -5,9 +5,9 @@
 <p>I've included std namespace in header files. I know It's bad practice, but this is a small project and I didn't really thought about it back when I made it. </p>
 
 #### Project snapshots:
-<p>View 1</p>
+<h6>View 1</h6>
 <img src="screen-shots/view-1.png" height="600" alt="View 1">
-<p>View 2</p>
+<h6>View 2</h6>
 <img src="screen-shots/view-2.png" height="600" alt="View 2">
 
 
