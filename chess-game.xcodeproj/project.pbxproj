@@ -11,13 +11,13 @@
 		445EE86F213FEE9C002C5A01 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE85B213FEE9B002C5A01 /* Main.cpp */; };
 		445EE870213FEE9C002C5A01 /* Knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE861213FEE9B002C5A01 /* Knight.cpp */; };
 		445EE871213FEE9C002C5A01 /* ChessGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE863213FEE9B002C5A01 /* ChessGame.cpp */; };
-		445EE872213FEE9C002C5A01 /* SomeException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE865213FEE9B002C5A01 /* SomeException.cpp */; };
+		445EE872213FEE9C002C5A01 /* CustomException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE865213FEE9B002C5A01 /* CustomException.cpp */; };
 		445EE873213FEE9C002C5A01 /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE866213FEE9B002C5A01 /* Pawn.cpp */; };
 		445EE874213FEE9C002C5A01 /* Rock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE867213FEE9B002C5A01 /* Rock.cpp */; };
 		445EE875213FEE9C002C5A01 /* ChessBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE869213FEE9B002C5A01 /* ChessBoard.cpp */; };
 		445EE876213FEE9C002C5A01 /* Queen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE86A213FEE9C002C5A01 /* Queen.cpp */; };
 		445EE877213FEE9C002C5A01 /* King.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE86C213FEE9C002C5A01 /* King.cpp */; };
-		445EE878213FEE9C002C5A01 /* ChessPieces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE86D213FEE9C002C5A01 /* ChessPieces.cpp */; };
+		445EE878213FEE9C002C5A01 /* ChessPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EE86D213FEE9C002C5A01 /* ChessPiece.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,22 +40,21 @@
 		445EE85B213FEE9B002C5A01 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		445EE85C213FEE9B002C5A01 /* Pawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pawn.h; sourceTree = "<group>"; };
 		445EE85D213FEE9B002C5A01 /* ChessGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessGame.h; sourceTree = "<group>"; };
-		445EE85E213FEE9B002C5A01 /* SomeException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomeException.h; sourceTree = "<group>"; };
+		445EE85E213FEE9B002C5A01 /* CustomException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomException.h; sourceTree = "<group>"; };
 		445EE85F213FEE9B002C5A01 /* King.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = King.h; sourceTree = "<group>"; };
-		445EE860213FEE9B002C5A01 /* ChessPlayers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChessPlayers.txt; sourceTree = "<group>"; };
 		445EE861213FEE9B002C5A01 /* Knight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Knight.cpp; sourceTree = "<group>"; };
 		445EE862213FEE9B002C5A01 /* Rook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rook.h; sourceTree = "<group>"; };
 		445EE863213FEE9B002C5A01 /* ChessGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessGame.cpp; sourceTree = "<group>"; };
 		445EE864213FEE9B002C5A01 /* Queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queen.h; sourceTree = "<group>"; };
-		445EE865213FEE9B002C5A01 /* SomeException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SomeException.cpp; sourceTree = "<group>"; };
+		445EE865213FEE9B002C5A01 /* CustomException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomException.cpp; sourceTree = "<group>"; };
 		445EE866213FEE9B002C5A01 /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
 		445EE867213FEE9B002C5A01 /* Rock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rock.cpp; sourceTree = "<group>"; };
-		445EE868213FEE9B002C5A01 /* ChessPieces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessPieces.h; sourceTree = "<group>"; };
+		445EE868213FEE9B002C5A01 /* ChessPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessPiece.h; sourceTree = "<group>"; };
 		445EE869213FEE9B002C5A01 /* ChessBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessBoard.cpp; sourceTree = "<group>"; };
 		445EE86A213FEE9C002C5A01 /* Queen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Queen.cpp; sourceTree = "<group>"; };
 		445EE86B213FEE9C002C5A01 /* ChessBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessBoard.h; sourceTree = "<group>"; };
 		445EE86C213FEE9C002C5A01 /* King.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = King.cpp; sourceTree = "<group>"; };
-		445EE86D213FEE9C002C5A01 /* ChessPieces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessPieces.cpp; sourceTree = "<group>"; };
+		445EE86D213FEE9C002C5A01 /* ChessPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessPiece.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +93,8 @@
 				445EE86B213FEE9C002C5A01 /* ChessBoard.h */,
 				445EE863213FEE9B002C5A01 /* ChessGame.cpp */,
 				445EE85D213FEE9B002C5A01 /* ChessGame.h */,
-				445EE86D213FEE9C002C5A01 /* ChessPieces.cpp */,
-				445EE868213FEE9B002C5A01 /* ChessPieces.h */,
-				445EE860213FEE9B002C5A01 /* ChessPlayers.txt */,
+				445EE86D213FEE9C002C5A01 /* ChessPiece.cpp */,
+				445EE868213FEE9B002C5A01 /* ChessPiece.h */,
 				445EE86C213FEE9C002C5A01 /* King.cpp */,
 				445EE85F213FEE9B002C5A01 /* King.h */,
 				445EE861213FEE9B002C5A01 /* Knight.cpp */,
@@ -108,8 +106,8 @@
 				445EE864213FEE9B002C5A01 /* Queen.h */,
 				445EE867213FEE9B002C5A01 /* Rock.cpp */,
 				445EE862213FEE9B002C5A01 /* Rook.h */,
-				445EE865213FEE9B002C5A01 /* SomeException.cpp */,
-				445EE85E213FEE9B002C5A01 /* SomeException.h */,
+				445EE865213FEE9B002C5A01 /* CustomException.cpp */,
+				445EE85E213FEE9B002C5A01 /* CustomException.h */,
 			);
 			path = "chess-game";
 			sourceTree = "<group>";
@@ -172,11 +170,11 @@
 			files = (
 				445EE86F213FEE9C002C5A01 /* Main.cpp in Sources */,
 				445EE86E213FEE9C002C5A01 /* Bishop.cpp in Sources */,
-				445EE872213FEE9C002C5A01 /* SomeException.cpp in Sources */,
+				445EE872213FEE9C002C5A01 /* CustomException.cpp in Sources */,
 				445EE876213FEE9C002C5A01 /* Queen.cpp in Sources */,
 				445EE877213FEE9C002C5A01 /* King.cpp in Sources */,
 				445EE874213FEE9C002C5A01 /* Rock.cpp in Sources */,
-				445EE878213FEE9C002C5A01 /* ChessPieces.cpp in Sources */,
+				445EE878213FEE9C002C5A01 /* ChessPiece.cpp in Sources */,
 				445EE873213FEE9C002C5A01 /* Pawn.cpp in Sources */,
 				445EE875213FEE9C002C5A01 /* ChessBoard.cpp in Sources */,
 				445EE871213FEE9C002C5A01 /* ChessGame.cpp in Sources */,

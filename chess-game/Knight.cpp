@@ -1,6 +1,6 @@
 #include "Knight.h"
 
-bool CKnight::AreSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, CAPiece* qpaaBoard[8][8])
+bool Knight::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
 {
 	// destination square is unoccupied or occupied by opposite color
 	if ((iSrcCol == iDestCol + 1) || (iSrcCol == iDestCol - 1))

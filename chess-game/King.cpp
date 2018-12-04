@@ -1,6 +1,6 @@
 #include "King.h"
 
-bool CKing :: AreSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, CAPiece* qpaaBoard[8][8])
+bool King :: areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
 {
 	int iRowDelta = iDestRow - iSrcRow;
 	int iColDelta = iDestCol - iSrcCol;

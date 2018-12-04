@@ -3,8 +3,9 @@
 
 int main() 
 {
-	CChess qGame;
-	qGame.Start();
-	delete(&qGame);
+    // yep, this is basically the game
+	ChessGame game;
+    game.start();
+	delete(&game);
 	return 0;
 }

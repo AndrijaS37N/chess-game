@@ -1,15 +1,16 @@
 #pragma once
-#include "ChessPieces.h"
 
-class CKing : public CAPiece
+#include "ChessPiece.h"
+
+class King : public ChessPiece
 {
 public:
-    CKing(char cColor) : CAPiece(cColor) {}
-    ~CKing() {}
+    King(char cColor) : ChessPiece(cColor) {}
+    ~King() {}
 private:
-    virtual char GetPiece()
+    virtual char getPiece()
     {
         return 'K';
     }
-    bool AreSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, CAPiece* qpaaBoard[8][8]);
+    bool areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8]);
 };

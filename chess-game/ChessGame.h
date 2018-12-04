@@ -1,22 +1,22 @@
 #pragma once
+
 #include <iostream>
 #include "ChessBoard.h"
-#include "ChessPieces.h"
-using namespace std;
+#include "ChessPiece.h"
 
-class CChess
+class ChessGame
 {
 public:
-	CChess() : mcPlayerTurn('W') {}
-	~CChess() {}
-	void EnterNames();
-	void Start();
-	void GetNextMove(CAPiece* qpaaBoard[8][8]);
-	void AlternateTurn();
-	bool IsGameOver();
-    void PrintPlayers(string time);
-	string nameA;
-	string nameB;
+	ChessGame() : turnOf('W') {}
+	~ChessGame() {}
+	void enterNames();
+	void start();
+	void getNextMove(ChessPiece* qpaaBoard[8][8]);
+	void alternateTurn();
+	bool isGameOver();
+    void printPlayers(std::string time);
+    std::string nameA;
+    std::string nameB;
 	int beginHours;
 	int beginMinutes;
 	int beginSeconds;
@@ -26,6 +26,6 @@ public:
 	struct tm* end;
     bool exitCode;
 private:
-	CBoard mqGameBoard;
-	char mcPlayerTurn;
+	ChessBoard gameBoard;
+	char turnOf;
 };

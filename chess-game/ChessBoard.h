@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Pawn.h"
 #include "Rook.h"
 #include "Bishop.h"
@@ -6,13 +7,13 @@
 #include "Knight.h"
 #include "Queen.h"
 
-class CBoard
+class ChessBoard
 {
 public:
-	CBoard();
-	~CBoard();
-	void Print();
-	bool IsInCheck(char cColor);
-	bool CanMove(char cColor);
-	CAPiece* mqpaaBoard[8][8];
+	ChessBoard();
+	~ChessBoard();
+	void print();
+	bool isInCheck(char cColor);
+	bool canMove(char cColor);
+	ChessPiece* mqpaaBoard[8][8];
 };

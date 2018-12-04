@@ -1,6 +1,6 @@
 #include "Rook.h"
 
-bool CRook::AreSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, CAPiece* qpaaBoard[8][8])
+bool Rook::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
 {
 	if (iSrcRow == iDestRow)
 	{
