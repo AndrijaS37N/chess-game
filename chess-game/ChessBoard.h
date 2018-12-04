@@ -12,7 +12,7 @@ class ChessBoard
 public:
 	ChessBoard();
 	~ChessBoard();
-	void print();
+	void printBoard();
 	bool isInCheck(char color);
 	bool canMove(char color);
 	ChessPiece* boardMove[8][8];

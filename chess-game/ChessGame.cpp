@@ -39,6 +39,10 @@ void ChessGame::enterNames()
         std::cout << "\n* Woops! " << arg.message << "\n" << std::endl;
     }
     std::cout << "* Bugs, mistakes, code redundances and lack of implementations are expected.\n* This was my first C++ project." << std::endl;;
+    
+    std::cout << "Press any key to start ..." << std::endl;
+    std::cin.get();
+    
     std::cout << "\n\t\tHave a good match!\n___________________________________" << std::endl;
 }
 
@@ -67,42 +71,43 @@ void ChessGame::start()
     } while (!isGameOver());
     
     std::cout << "Here is the view of the last move:" << std::endl;
-    gameBoard.print();
+    gameBoard.printBoard();
+    std::cout << std::endl;
 }
 
 void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
 {
-    bool bValidMove = false;
+    bool boolValidMove = false;
     do
     {
-        gameBoard.print();
+        gameBoard.printBoard();
         
         // get input and convert to coordinates
-        int iStartMove;
-        int iStartRow;
-        int iStartCol;
+        int startMove;
+        int startRow;
+        int startCol;
         
-        int iEndMove;
-        int iEndRow;
-        int iEndCol;
+        int endMove;
+        int endRow;
+        int endCol;
         
         std::cout << turnOf << "'s Move: ";
-        std::cin >> iStartMove;
+        std::cin >> startMove;
         std::cout << "To: ";
-        std::cin >> iEndMove;
+        std::cin >> endMove;
         
-        while (std::cin.fail() || iStartMove > 1000 || iStartMove < -1000 || iEndMove > 1000 || iEndMove < -1000)
+        while (std::cin.fail() || startMove > 1000 || startMove < -1000 || endMove > 1000 || endMove < -1000)
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "\nInvalid input! Enter number coordinates (num of 2 digits)." << std::endl;
             std::cout << turnOf << "'s Move: ";
-            std::cin >> iStartMove;
+            std::cin >> startMove;
             std::cout << "To: ";
-            std::cin >> iEndMove;
+            std::cin >> endMove;
         }
         
-        if (iStartMove == 999 || iEndMove == 999)
+        if (startMove == 999 || endMove == 999)
         {
             std::cout << "You've entered the exit game code 999.\nHave a nice day!" << std::endl;
             exitCode = true;
@@ -112,60 +117,57 @@ void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
             exit(0);
         }
         
-        iStartRow = (iStartMove / 10) - 1;
-        iStartCol = (iStartMove % 10) - 1;
-        iEndRow = (iEndMove / 10) - 1;
-        iEndCol = (iEndMove % 10) - 1;
+        startRow = (startMove / 10) - 1;
+        startCol = (startMove % 10) - 1;
+        endRow = (endMove / 10) - 1;
+        endCol = (endMove % 10) - 1;
         
         // check that the indices are in range
         // and that the source and destination are different
-        if ((iStartRow >= 0 && iStartRow <= 7) && (iStartCol >= 0 && iStartCol <= 7) && (iEndRow >= 0 && iEndRow <= 7) && (iEndCol >= 0 && iEndCol <= 7))
+        if ((startRow >= 0 && startRow <= 7) && (startCol >= 0 && startCol <= 7) && (endRow >= 0 && endRow <= 7) && (endCol >= 0 && endCol <= 7))
         {
             // additional checks in here
-            ChessPiece* currentPiece = boardMove[iStartRow][iStartCol];
+            ChessPiece* currentPiece = boardMove[startRow][startCol];
             // check that the piece is the correct color
             if ((currentPiece != 0) && (currentPiece->getColor() == turnOf))
             {
                 // check that the destination is a valid destination
-                if (currentPiece->isLegalMove(iStartRow, iStartCol, iEndRow, iEndCol, boardMove))
+                if (currentPiece->isLegalMove(startRow, startCol, endRow, endCol, boardMove))
                 {
                     // make the move
-                    ChessPiece* temp = boardMove[iEndRow][iEndCol];
-                    boardMove[iEndRow][iEndCol] = boardMove[iStartRow][iStartCol];
-                    boardMove[iStartRow][iStartCol] = 0;
+                    ChessPiece* temp = boardMove[endRow][endCol];
+                    boardMove[endRow][endCol] = boardMove[startRow][startCol];
+                    boardMove[startRow][startCol] = 0;
                     // make sure that the current player is not in check
                     if (!gameBoard.isInCheck(turnOf))
                     {
                         delete temp;
-                        bValidMove = true;
+                        boolValidMove = true;
                     }
                     else
                     { // undo the last move
-                        boardMove[iStartRow][iStartCol] = boardMove[iEndRow][iEndCol];
-                        boardMove[iEndRow][iEndCol] = temp;
+                        boardMove[startRow][startCol] = boardMove[endRow][endCol];
+                        boardMove[endRow][endCol] = temp;
                     }
                 }
             }
         }
-        if (!bValidMove)
+        if (!boolValidMove)
         {
             std::cout << "Invalid move!" << std::endl;
         }
-    } while (!bValidMove);
+    } while (!boolValidMove);
 }
 
-void ChessGame::alternateTurn()
-{
-    turnOf = (turnOf == 'W') ? 'B' : 'W';
-}
+void ChessGame::alternateTurn() { turnOf = (turnOf == 'W') ? 'B' : 'W'; }
 
- bool ChessGame::isGameOver()
+bool ChessGame::isGameOver()
 {
     // check that the current player can move;
     // if not, we have a stalemate or checkmate
-    bool bCanMove(false);
-    bCanMove = gameBoard.canMove(turnOf);
-    if (!bCanMove)
+    bool boolCanMove(false);
+    boolCanMove = gameBoard.canMove(turnOf);
+    if (!boolCanMove)
     {
         if (gameBoard.isInCheck(turnOf))
         {
@@ -184,7 +186,7 @@ void ChessGame::alternateTurn()
         printPlayers(getCurrentTime());
     }
     
-    return !bCanMove;
+    return !boolCanMove;
 }
 
 std::string ChessGame::getCurrentTime()

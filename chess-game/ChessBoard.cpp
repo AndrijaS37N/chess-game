@@ -1,5 +1,6 @@
 #include "ChessBoard.h"
 #include <iostream>
+#include <stdio.h>
 
 ChessBoard::ChessBoard()
 {
@@ -28,6 +29,7 @@ ChessBoard::ChessBoard()
 	{
 		boardMove[1][col] = new Pawn('W');
 	}
+    
 	boardMove[0][0] = new Rook('W');
 	boardMove[0][1] = new Knight('W');
 	boardMove[0][2] = new Bishop('W');
@@ -50,9 +52,9 @@ ChessBoard::~ChessBoard()
 	}
 }
 
-void ChessBoard::print()
+void ChessBoard::printBoard()
 {
-    // let's try this here
+    // and let's try this here
 	using namespace std;
     
 	const int squareHeight = 3;
