@@ -1,47 +1,39 @@
 #include "Pawn.h"
 
-bool Pawn::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool Pawn::areSquaresLegal(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
-	ChessPiece* dest = boardMove[iDestRow][iDestCol];
+	ChessPiece* dest = boardMove[destRow][destCol];
 	if (dest == 0)
 	{
 		// destination square is unoccupied
-		if (iSrcCol == iDestCol)
+		if (srcCol == destCol)
 		{
             if (getColor() == 'W')
 			{
-				if (iDestRow == iSrcRow + 1)
-				{
+				if (destRow == srcRow + 1)
 					return true;
-				}
 			}
 			else
 			{
-				if (iDestRow == iSrcRow - 1)
-				{
+				if (destRow == srcRow - 1)
 					return true;
-				}
 			}
 		}
 	}
 	else
 	{
 		// dest holds piece of opposite color
-		if ((iSrcCol == iDestCol + 1) || (iSrcCol == iDestCol - 1))
+		if ((srcCol == destCol + 1) || (srcCol == destCol - 1))
 		{
             if (getColor() == 'W')
 			{
-				if (iDestRow == iSrcRow + 1)
-				{
+				if (destRow == srcRow + 1)
 					return true;
-				}
 			}
 			else
 			{
-				if (iDestRow == iSrcRow - 1)
-				{
+				if (destRow == srcRow - 1)
 					return true;
-				}
 			}
 		}
 	}

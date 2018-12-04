@@ -12,6 +12,7 @@ public:
 	void enterNames();
 	void start();
     bool isGameOver();
+    
 protected:
 	void getNextMove(ChessPiece* boardMove[8][8]);
 	void alternateTurn();
@@ -21,6 +22,7 @@ protected:
     std::string getCurrentTime();
     struct tm* endTime;
     bool exitCode;
+    
 private:
 	ChessBoard gameBoard;
 	char turnOf;

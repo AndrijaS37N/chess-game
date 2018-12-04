@@ -1,20 +1,20 @@
 #include "Bishop.h"
 
-bool Bishop::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool Bishop::areSquaresLegal(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
-	if ((iDestCol - iSrcCol == iDestRow - iSrcRow) || (iDestCol - iSrcCol == iSrcRow - iDestRow))
+	if ((destCol - srcCol == destRow - srcRow) || (destCol - srcCol == srcRow - destRow))
 	{
 		// make sure that all invervening squares are empty
-		int iRowOffset = (iDestRow - iSrcRow > 0) ? 1 : -1;
-		int iColOffset = (iDestCol - iSrcCol > 0) ? 1 : -1;
-		int iCheckRow;
-		int iCheckCol;
-		for (iCheckRow = iSrcRow + iRowOffset, iCheckCol = iSrcCol + iColOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset, iCheckCol = iCheckCol + iColOffset)
+		int rowOffset = (destRow - srcRow > 0) ? 1 : -1;
+		int colOffset = (destCol - srcCol > 0) ? 1 : -1;
+		int checkRow;
+		int checkCol;
+		for (checkRow = srcRow + rowOffset, checkCol = srcCol + colOffset;
+             checkRow != destRow;
+             checkRow += rowOffset, checkCol += colOffset)
 		{
-			if (boardMove[iCheckRow][iCheckCol] != 0)
-			{
+			if (boardMove[checkRow][checkCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}

@@ -1,30 +1,28 @@
 #include "Rook.h"
 
-bool Rook::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool Rook::areSquaresLegal(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
-	if (iSrcRow == iDestRow)
+	if (srcRow == destRow)
 	{
-		// make sure that all invervening squares are empty
-		int iColOffset = (iDestCol - iSrcCol > 0) ? 1 : -1;
-		for (int iCheckCol = iSrcCol + iColOffset; iCheckCol != iDestCol; iCheckCol = iCheckCol + iColOffset)
+		// make sure that all invervening squares are empty I
+		int colOffset = (destCol - srcCol > 0) ? 1 : -1;
+		for (int checkCol = srcCol + colOffset;
+             checkCol != destCol;
+             checkCol += colOffset)
 		{
-			if (boardMove[iSrcRow][iCheckCol] != 0)
-			{
+			if (boardMove[srcRow][checkCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}
-	else if (iDestCol == iSrcCol)
+	else if (destCol == srcCol)
 	{
-		// make sure that all invervening squares are empty
-		int iRowOffset = (iDestRow - iSrcRow > 0) ? 1 : -1;
-		for (int iCheckRow = iSrcRow + iRowOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset)
+		// make sure that all invervening squares are empty II
+		int rowOffset = (destRow - srcRow > 0) ? 1 : -1;
+		for (int checkRow = srcRow + rowOffset; checkRow != destRow; checkRow += rowOffset)
 		{
-			if (boardMove[iCheckRow][iSrcCol] != 0)
-			{
+			if (boardMove[checkRow][srcCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}

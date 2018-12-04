@@ -1,46 +1,41 @@
 #include "Queen.h"
 
-bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool Queen::areSquaresLegal(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
-	if (iSrcRow == iDestRow)
+	if (srcRow == destRow)
 	{
 		// make sure that all invervening squares are empty
-		int iColOffset = (iDestCol - iSrcCol > 0) ? 1 : -1;
-		for (int iCheckCol = iSrcCol + iColOffset; iCheckCol != iDestCol; iCheckCol = iCheckCol + iColOffset)
+		int colOffset = (destCol - srcCol > 0) ? 1 : -1;
+		for (int checkCol = srcCol + colOffset; checkCol != destCol; checkCol = checkCol + colOffset)
 		{
-			if (boardMove[iSrcRow][iCheckCol] != 0)
-			{
+			if (boardMove[srcRow][checkCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}
-	else if (iDestCol == iSrcCol)
+	else if (destCol == srcCol)
 	{
 		// make sure that all invervening squares are empty
-		int iRowOffset = (iDestRow - iSrcRow > 0) ? 1 : -1;
-		for (int iCheckRow = iSrcRow + iRowOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset)
+		int rowOffset = (destRow - srcRow > 0) ? 1 : -1;
+		for (int checkRow = srcRow + rowOffset; checkRow != destRow; checkRow = checkRow + rowOffset)
 		{
-			if (boardMove[iCheckRow][iSrcCol] != 0)
-			{
+			if (boardMove[checkRow][srcCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}
-	else if ((iDestCol - iSrcCol == iDestRow - iSrcRow) || (iDestCol - iSrcCol == iSrcRow - iDestRow))
+	else if ((destCol - srcCol == destRow - srcRow) || (destCol - srcCol == srcRow - destRow))
 	{
 		// make sure that all invervening squares are empty
-		int iRowOffset = (iDestRow - iSrcRow > 0) ? 1 : -1;
-		int iColOffset = (iDestCol - iSrcCol > 0) ? 1 : -1;
-		int iCheckRow;
-		int iCheckCol;
-		for (iCheckRow = iSrcRow + iRowOffset, iCheckCol = iSrcCol + iColOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset, iCheckCol = iCheckCol + iColOffset)
+		int rowOffset = (destRow - srcRow > 0) ? 1 : -1;
+		int colOffset = (destCol - srcCol > 0) ? 1 : -1;
+		int checkRow;
+		int checkCol;
+		for (checkRow = srcRow + rowOffset, checkCol = srcCol + colOffset; checkRow != destRow;
+             checkRow += rowOffset, checkCol += colOffset)
 		{
-			if (boardMove[iCheckRow][iCheckCol] != 0)
-			{
+			if (boardMove[checkRow][checkCol] != 0)
 				return false;
-			}
 		}
 		return true;
 	}

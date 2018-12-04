@@ -1,21 +1,17 @@
 #include "Knight.h"
 
-bool Knight::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool Knight::areSquaresLegal(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
 	// destination square is unoccupied or occupied by opposite color
-	if ((iSrcCol == iDestCol + 1) || (iSrcCol == iDestCol - 1))
+	if ((srcCol == destCol + 1) || (srcCol == destCol - 1))
 	{
-		if ((iSrcRow == iDestRow + 2) || (iSrcRow == iDestRow - 2))
-		{
+		if ((srcRow == destRow + 2) || (srcRow == destRow - 2))
 			return true;
-		}
 	}
-	if ((iSrcCol == iDestCol + 2) || (iSrcCol == iDestCol - 2))
+	if ((srcCol == destCol + 2) || (srcCol == destCol - 2))
 	{
-		if ((iSrcRow == iDestRow + 1) || (iSrcRow == iDestRow - 1))
-		{
+		if ((srcRow == destRow + 1) || (srcRow == destRow - 1))
 			return true;
-		}
 	}
 	return false;
 }

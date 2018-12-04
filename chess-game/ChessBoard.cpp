@@ -3,18 +3,16 @@
 
 ChessBoard::ChessBoard()
 {
-	for (int iRow = 0; iRow < 8; ++iRow)
+	for (int row = 0; row < 8; ++row)
 	{
-		for (int iCol = 0; iCol < 8; ++iCol)
-		{
-			boardMove[iRow][iCol] = 0;
-		}
+		for (int col = 0; col < 8; ++col)
+			boardMove[row][col] = 0;
 	}
     
 	// allocate and place black pieces
-	for (int iCol = 0; iCol < 8; ++iCol)
+	for (int col = 0; col < 8; ++col)
 	{
-		boardMove[6][iCol] = new Pawn('B');
+		boardMove[6][col] = new Pawn('B');
 	}
 	boardMove[7][0] = new Rook('B');
 	boardMove[7][1] = new Knight('B');
@@ -26,9 +24,9 @@ ChessBoard::ChessBoard()
 	boardMove[7][7] = new Rook('B');
 	
     // allocate and place white pieces
-	for (int iCol = 0; iCol < 8; ++iCol)
+	for (int col = 0; col < 8; ++col)
 	{
-		boardMove[1][iCol] = new Pawn('W');
+		boardMove[1][col] = new Pawn('W');
 	}
 	boardMove[0][0] = new Rook('W');
 	boardMove[0][1] = new Knight('W');
@@ -42,51 +40,54 @@ ChessBoard::ChessBoard()
 
 ChessBoard::~ChessBoard()
 {
-	for (int iRow = 0; iRow < 8; ++iRow)
+	for (int row = 0; row < 8; ++row)
 	{
-		for (int iCol = 0; iCol < 8; ++iCol)
+		for (int col = 0; col < 8; ++col)
 		{
-			delete boardMove[iRow][iCol];
-			boardMove[iRow][iCol] = 0;
+			delete boardMove[row][col];
+			boardMove[row][col] = 0;
 		}
 	}
 }
 
 void ChessBoard::print()
 {
+    // let's try this here
 	using namespace std;
-	const int kiSquareWidth = 4;
-	const int kiSquareHeight = 3;
-	for (int iRow = 0; iRow < 8 * kiSquareHeight; ++iRow)
+    
+	const int squareHeight = 3;
+    const int squareWidth = 4;
+    
+	for (int row = 0; row < 8 * squareHeight; ++row)
 	{
-		int iSquareRow = iRow / kiSquareHeight;
+		int squareRow = row / squareHeight;
 		// print side border with numbering
-		if (iRow % 3 == 1)
+		if (row % 3 == 1)
 		{
-			cout << '-' << (char)('1' + 7 - iSquareRow) << '-';
+			cout << '-' << (char)('1' + 7 - squareRow) << '-';
 		}
 		else
 		{
 			cout << "---";
 		}
 		// print the chess board
-		for (int iCol = 0; iCol < 8 * kiSquareWidth; ++iCol)
+		for (int col = 0; col < 8 * squareWidth; ++col)
 		{
-			int iSquareCol = iCol / kiSquareWidth;
-			if (((iRow % 3) == 1) && ((iCol % 4) == 1 || (iCol % 4) == 2) && boardMove[7 - iSquareRow][iSquareCol] != 0)
+			int squareCol = col / squareWidth;
+			if (((row % 3) == 1) && ((col % 4) == 1 || (col % 4) == 2) && boardMove[7 - squareRow][squareCol] != 0)
 			{
-				if ((iCol % 4) == 1)
+				if ((col % 4) == 1)
 				{
-                    cout << boardMove[7 - iSquareRow][iSquareCol]->getColor();
+                    cout << boardMove[7 - squareRow][squareCol]->getColor();
 				}
 				else
 				{
-                    cout << boardMove[7 - iSquareRow][iSquareCol]->getPiece();
+                    cout << boardMove[7 - squareRow][squareCol]->getPiece();
 				}
 			}
 			else
 			{
-				if ((iSquareRow + iSquareCol) % 2 == 1)
+				if ((squareRow + squareCol) % 2 == 1)
 				{
 					cout << ' ';
 				}
@@ -99,17 +100,17 @@ void ChessBoard::print()
 		cout << endl;
 	}
 	// print the bottom border with numbers
-	for (int iRow = 0; iRow < kiSquareHeight; ++iRow)
+	for (int row = 0; row < squareHeight; ++row)
 	{
-		if (iRow % 3 == 1)
+		if (row % 3 == 1)
 		{
 			cout << "---";
-			for (int iCol = 0; iCol < 8 * kiSquareWidth; ++iCol)
+			for (int col = 0; col < 8 * squareWidth; ++col)
 			{
-				int iSquareCol = iCol / kiSquareWidth;
-				if ((iCol % 4) == 1)
+				int squareCol = col / squareWidth;
+				if ((col % 4) == 1)
 				{
-					cout << (iSquareCol + 1);
+					cout << (squareCol + 1);
 				}
 				else
 				{
@@ -120,7 +121,7 @@ void ChessBoard::print()
 		}
 		else
 		{
-			for (int iCol = 1; iCol < 9 * kiSquareWidth; ++iCol)
+			for (int col = 1; col < 9 * squareWidth; ++col)
 			{
 				cout << '-';
 			}
@@ -129,23 +130,23 @@ void ChessBoard::print()
 	}
 }
 
-bool ChessBoard::isInCheck(char cColor)
+bool ChessBoard::isInCheck(char color)
 {
 	// find the king
-    int iKingRow = 0;
-    int iKingCol = 0;
-	for (int iRow = 0; iRow < 8; ++iRow)
+    int kingRow = 0;
+    int kingCol = 0;
+	for (int row = 0; row < 8; ++row)
 	{
-		for (int iCol = 0; iCol < 8; ++iCol)
+		for (int col = 0; col < 8; ++col)
 		{
-			if (boardMove[iRow][iCol] != 0)
+			if (boardMove[row][col] != 0)
 			{
-                if (boardMove[iRow][iCol]->getColor() == cColor)
+                if (boardMove[row][col]->getColor() == color)
 				{
-                    if (boardMove[iRow][iCol]->getPiece() == 'K')
+                    if (boardMove[row][col]->getPiece() == 'K')
 					{
-						iKingRow = iRow;
-						iKingCol = iCol;
+						kingRow = row;
+						kingCol = col;
 					}
 				}
 			}
@@ -153,18 +154,16 @@ bool ChessBoard::isInCheck(char cColor)
 	}
     
 	// run through the opponent's pieces and see if any can take the king
-	for (int iRow = 0; iRow < 8; ++iRow)
+	for (int row = 0; row < 8; ++row)
 	{
-		for (int iCol = 0; iCol < 8; ++iCol)
+		for (int col = 0; col < 8; ++col)
 		{
-			if (boardMove[iRow][iCol] != 0)
+			if (boardMove[row][col] != 0)
 			{
-				if (boardMove[iRow][iCol]->getColor() != cColor)
+				if (boardMove[row][col]->getColor() != color)
 				{
-					if (boardMove[iRow][iCol]->isLegalMove(iRow, iCol, iKingRow, iKingCol, boardMove))
-					{
+					if (boardMove[row][col]->isLegalMove(row, col, kingRow, kingCol, boardMove))
 						return true;
-					}
 				}
 			}
 		}
@@ -173,35 +172,35 @@ bool ChessBoard::isInCheck(char cColor)
 	return false;
 }
 
-bool ChessBoard::canMove(char cColor)
+bool ChessBoard::canMove(char color)
 {
 	// run through all pieces
-	for (int iRow = 0; iRow < 8; ++iRow)
+	for (int row = 0; row < 8; ++row)
 	{
-		for (int iCol = 0; iCol < 8; ++iCol)
+		for (int col = 0; col < 8; ++col)
 		{
-			if (boardMove[iRow][iCol] != 0)
+			if (boardMove[row][col] != 0)
 			{
 				// if it is a piece of the current player, see if it has a legal move
-                if (boardMove[iRow][iCol]->getColor() == cColor)
+                if (boardMove[row][col]->getColor() == color)
 				{
-					for (int iMoveRow = 0; iMoveRow < 8; ++iMoveRow)
+					for (int moveRow = 0; moveRow < 8; ++moveRow)
 					{
-						for (int iMoveCol = 0; iMoveCol < 8; ++iMoveCol)
+						for (int moveCol = 0; moveCol < 8; ++moveCol)
 						{
-                            if (boardMove[iRow][iCol]->isLegalMove(iRow, iCol, iMoveRow, iMoveCol, boardMove))
+                            if (boardMove[row][col]->isLegalMove(row, col, moveRow, moveCol, boardMove))
 							{
 								// make move and check whether king is in check
-								ChessPiece* qpTemp = boardMove[iMoveRow][iMoveCol];
-								boardMove[iMoveRow][iMoveCol] = boardMove[iRow][iCol];
-								boardMove[iRow][iCol] = 0;
-                                bool bCanMove = !isInCheck(cColor);
+								ChessPiece* temp = boardMove[moveRow][moveCol];
+								boardMove[moveRow][moveCol] = boardMove[row][col];
+								boardMove[row][col] = 0;
+                                bool boolCanMove = !isInCheck(color);
                                 
 								// undo the move
-								boardMove[iRow][iCol] = boardMove[iMoveRow][iMoveCol];
-								boardMove[iMoveRow][iMoveCol] = qpTemp;
+								boardMove[row][col] = boardMove[moveRow][moveCol];
+								boardMove[moveRow][moveCol] = temp;
                                 
-								if (bCanMove)
+								if (boolCanMove)
 								{
 									return true;
 								}

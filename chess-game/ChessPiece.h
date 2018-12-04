@@ -5,13 +5,13 @@
 class ChessPiece
 {
 public:
-    ChessPiece(char color) : mcColor(color) {}
+    ChessPiece(char color) : pieceColor(color) {}
     virtual ~ChessPiece() {}
     virtual char getPiece() = 0;
     char getColor();
-    bool isLegalMove(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8]);
+    bool isLegalMove(int, int, int, int, ChessPiece* boardMove[8][8]);
     
 private:
-    virtual bool areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8]) = 0;
-    char mcColor;
+    virtual bool areSquaresLegal(int, int, int, int, ChessPiece* boardMove[8][8]) = 0;
+    char pieceColor;
 };

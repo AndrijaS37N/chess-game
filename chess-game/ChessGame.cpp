@@ -95,7 +95,7 @@ void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "\nInvalid Input! Enter number coordinates (num of 2 digits)." << std::endl;
+            std::cout << "\nInvalid input! Enter number coordinates (num of 2 digits)." << std::endl;
             std::cout << turnOf << "'s Move: ";
             std::cin >> iStartMove;
             std::cout << "To: ";

@@ -1,14 +1,14 @@
 #include "ChessPiece.h"
 
-char ChessPiece :: getColor()
+char ChessPiece::getColor()
 {
-    return mcColor;
+    return pieceColor;
 }
-bool ChessPiece :: isLegalMove(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
+bool ChessPiece::isLegalMove(int srcRow, int srcCol, int destRow, int destCol, ChessPiece* boardMove[8][8])
 {
-    ChessPiece* dest = boardMove[iDestRow][iDestCol];
-    if ((dest == 0) || (mcColor != dest->getColor()))
-        return areSquaresLegal(iSrcRow, iSrcCol, iDestRow, iDestCol, boardMove);
+    ChessPiece* dest = boardMove[destRow][destCol];
+    if ((dest == 0) || (pieceColor != dest->getColor()))
+        return areSquaresLegal(srcRow, srcCol, destRow, destCol, boardMove);
     
     return false;
 }

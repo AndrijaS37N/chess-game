@@ -13,7 +13,7 @@ public:
 	ChessBoard();
 	~ChessBoard();
 	void print();
-	bool isInCheck(char cColor);
-	bool canMove(char cColor);
+	bool isInCheck(char color);
+	bool canMove(char color);
 	ChessPiece* boardMove[8][8];
 };
