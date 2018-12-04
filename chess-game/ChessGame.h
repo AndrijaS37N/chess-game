@@ -11,7 +11,7 @@ public:
 	~ChessGame() {}
 	void enterNames();
 	void start();
-	void getNextMove(ChessPiece* qpaaBoard[8][8]);
+	void getNextMove(ChessPiece* boardMove[8][8]);
 	void alternateTurn();
 	bool isGameOver();
     void printPlayers(std::string time);

@@ -26,9 +26,9 @@ void ChessGame::enterNames()
         if (nameA.size() < 3 || nameB.size() < 3)
             throw Mistake::CustomException("Little short for proper names, ey? OK, go on!");
     }
-    catch (Mistake::CustomException & param)
+    catch (Mistake::CustomException & arg)
     {
-        std::cout << "Testing an exception: Woops! " << param.message << "\n" << std::endl;
+        std::cout << "Testing an exception: Woops! " << arg.message << "\n" << std::endl;
     }
     std::cout << "Bugs, mistakes, code redundances and lack of implementations are expected.\nThis was my first C++ project." << std::endl;;
     std::cout << "\n\tHave a good match!\n___________________________________" << std::endl;
@@ -67,7 +67,7 @@ void ChessGame::start()
     gameBoard.print();
 }
 
-void ChessGame::getNextMove(ChessPiece* qpaaBoard[8][8])
+void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
 {
     bool bValidMove = false;
     do
@@ -137,27 +137,27 @@ void ChessGame::getNextMove(ChessPiece* qpaaBoard[8][8])
         if ((iStartRow >= 0 && iStartRow <= 7) && (iStartCol >= 0 && iStartCol <= 7) && (iEndRow >= 0 && iEndRow <= 7) && (iEndCol >= 0 && iEndCol <= 7))
         {
             // additional checks in here
-            ChessPiece* qpCurrPiece = qpaaBoard[iStartRow][iStartCol];
+            ChessPiece* currentPiece = boardMove[iStartRow][iStartCol];
             // check that the piece is the correct color
-            if ((qpCurrPiece != 0) && (qpCurrPiece->getColor() == turnOf))
+            if ((currentPiece != 0) && (currentPiece->getColor() == turnOf))
             {
                 // check that the destination is a valid destination
-                if (qpCurrPiece->isLegalMove(iStartRow, iStartCol, iEndRow, iEndCol, qpaaBoard))
+                if (currentPiece->isLegalMove(iStartRow, iStartCol, iEndRow, iEndCol, boardMove))
                 {
                     // make the move
-                    ChessPiece* qpTemp = qpaaBoard[iEndRow][iEndCol];
-                    qpaaBoard[iEndRow][iEndCol] = qpaaBoard[iStartRow][iStartCol];
-                    qpaaBoard[iStartRow][iStartCol] = 0;
+                    ChessPiece* temp = boardMove[iEndRow][iEndCol];
+                    boardMove[iEndRow][iEndCol] = boardMove[iStartRow][iStartCol];
+                    boardMove[iStartRow][iStartCol] = 0;
                     // make sure that the current player is not in check
                     if (!gameBoard.isInCheck(turnOf))
                     {
-                        delete qpTemp;
+                        delete temp;
                         bValidMove = true;
                     }
                     else
                     { // undo the last move
-                        qpaaBoard[iStartRow][iStartCol] = qpaaBoard[iEndRow][iEndCol];
-                        qpaaBoard[iEndRow][iEndCol] = qpTemp;
+                        boardMove[iStartRow][iStartCol] = boardMove[iEndRow][iEndCol];
+                        boardMove[iEndRow][iEndCol] = temp;
                     }
                 }
             }
