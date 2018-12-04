@@ -11,10 +11,10 @@ public:
 	~ChessGame() {}
 	void enterNames();
 	void start();
+    bool isGameOver();
 protected:
 	void getNextMove(ChessPiece* boardMove[8][8]);
 	void alternateTurn();
-	bool isGameOver();
     void printPlayers(std::string time);
     std::string nameA;
     std::string nameB;

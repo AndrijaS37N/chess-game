@@ -4,8 +4,9 @@
 int main() 
 {
     // yep, this is basically the game
-	ChessGame game;
+    ChessGame game;
     game.start();
-	delete(&game);
+    // this is not needed -> delete(&game);
 	return 0;
 }
+

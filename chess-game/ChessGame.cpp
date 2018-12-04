@@ -7,7 +7,7 @@
 void ChessGame::printPlayers(std::string time)
 {
     std::string fileName = "game-date-history.txt";
-    std::fstream logFile(fileName, std::fstream::out);
+    std::ofstream logFile(fileName, std::ios_base::app);
     logFile << "-> " << nameA << " VS " << nameB << ", these opponents finished playing on: " << time << std::endl;
     logFile.close();
     
@@ -29,11 +29,14 @@ void ChessGame::enterNames()
         getline(std::cin, nameB);
         
         if (nameA.length() < 3 || nameB.length() < 3)
-            throw Mistake::CustomException("Interesing names ... OK, go on!");
+            throw Mistake::CustomException("One of those names is a short one ... OK, go on!");
+        
+        if (nameA == nameB)
+            throw Mistake::CustomException("Those names are the same ... but OK, go on!");
     }
     catch (Mistake::CustomException & arg)
     {
-        std::cout << "\n* Testing an exception: Woops! " << arg.message << "\n" << std::endl;
+        std::cout << "\n* Woops! " << arg.message << "\n" << std::endl;
     }
     std::cout << "* Bugs, mistakes, code redundances and lack of implementations are expected.\n* This was my first C++ project." << std::endl;;
     std::cout << "\n\t\tHave a good match!\n___________________________________" << std::endl;
@@ -63,6 +66,7 @@ void ChessGame::start()
         
     } while (!isGameOver());
     
+    std::cout << "Here is the view of the last move:" << std::endl;
     gameBoard.print();
 }
 
@@ -155,7 +159,7 @@ void ChessGame::alternateTurn()
     turnOf = (turnOf == 'W') ? 'B' : 'W';
 }
 
-bool ChessGame::isGameOver()
+ bool ChessGame::isGameOver()
 {
     // check that the current player can move;
     // if not, we have a stalemate or checkmate
@@ -176,7 +180,10 @@ bool ChessGame::isGameOver()
         {
             std::cout << "Stalemate!" << std::endl;
         }
+        
+        printPlayers(getCurrentTime());
     }
+    
     return !bCanMove;
 }
 

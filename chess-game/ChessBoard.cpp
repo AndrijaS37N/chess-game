@@ -132,8 +132,8 @@ void ChessBoard::print()
 bool ChessBoard::isInCheck(char cColor)
 {
 	// find the king
-	int iKingRow;
-	int iKingCol;
+    int iKingRow = 0;
+    int iKingCol = 0;
 	for (int iRow = 0; iRow < 8; ++iRow)
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
