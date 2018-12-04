@@ -7,37 +7,37 @@ ChessBoard::ChessBoard()
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
 		{
-			mqpaaBoard[iRow][iCol] = 0;
+			boardMove[iRow][iCol] = 0;
 		}
 	}
     
 	// allocate and place black pieces
 	for (int iCol = 0; iCol < 8; ++iCol)
 	{
-		mqpaaBoard[6][iCol] = new Pawn('B');
+		boardMove[6][iCol] = new Pawn('B');
 	}
-	mqpaaBoard[7][0] = new Rook('B');
-	mqpaaBoard[7][1] = new Knight('B');
-	mqpaaBoard[7][2] = new Bishop('B');
-	mqpaaBoard[7][3] = new King('B');
-	mqpaaBoard[7][4] = new Queen('B');
-	mqpaaBoard[7][5] = new Bishop('B');
-	mqpaaBoard[7][6] = new Knight('B');
-	mqpaaBoard[7][7] = new Rook('B');
+	boardMove[7][0] = new Rook('B');
+	boardMove[7][1] = new Knight('B');
+	boardMove[7][2] = new Bishop('B');
+	boardMove[7][3] = new Queen('B');
+	boardMove[7][4] = new King('B');
+	boardMove[7][5] = new Bishop('B');
+	boardMove[7][6] = new Knight('B');
+	boardMove[7][7] = new Rook('B');
 	
     // allocate and place white pieces
 	for (int iCol = 0; iCol < 8; ++iCol)
 	{
-		mqpaaBoard[1][iCol] = new Pawn('W');
+		boardMove[1][iCol] = new Pawn('W');
 	}
-	mqpaaBoard[0][0] = new Rook('W');
-	mqpaaBoard[0][1] = new Knight('W');
-	mqpaaBoard[0][2] = new Bishop('W');
-	mqpaaBoard[0][3] = new King('W');
-	mqpaaBoard[0][4] = new Queen('W');
-	mqpaaBoard[0][5] = new Bishop('W');
-	mqpaaBoard[0][6] = new Knight('W');
-	mqpaaBoard[0][7] = new Rook('W');
+	boardMove[0][0] = new Rook('W');
+	boardMove[0][1] = new Knight('W');
+	boardMove[0][2] = new Bishop('W');
+	boardMove[0][3] = new Queen('W');
+	boardMove[0][4] = new King('W');
+	boardMove[0][5] = new Bishop('W');
+	boardMove[0][6] = new Knight('W');
+	boardMove[0][7] = new Rook('W');
 }
 
 ChessBoard::~ChessBoard()
@@ -46,8 +46,8 @@ ChessBoard::~ChessBoard()
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
 		{
-			delete mqpaaBoard[iRow][iCol];
-			mqpaaBoard[iRow][iCol] = 0;
+			delete boardMove[iRow][iCol];
+			boardMove[iRow][iCol] = 0;
 		}
 	}
 }
@@ -73,26 +73,26 @@ void ChessBoard::print()
 		for (int iCol = 0; iCol < 8 * kiSquareWidth; ++iCol)
 		{
 			int iSquareCol = iCol / kiSquareWidth;
-			if (((iRow % 3) == 1) && ((iCol % 4) == 1 || (iCol % 4) == 2) && mqpaaBoard[7 - iSquareRow][iSquareCol] != 0)
+			if (((iRow % 3) == 1) && ((iCol % 4) == 1 || (iCol % 4) == 2) && boardMove[7 - iSquareRow][iSquareCol] != 0)
 			{
 				if ((iCol % 4) == 1)
 				{
-                    cout << mqpaaBoard[7 - iSquareRow][iSquareCol]->getColor();
+                    cout << boardMove[7 - iSquareRow][iSquareCol]->getColor();
 				}
 				else
 				{
-                    cout << mqpaaBoard[7 - iSquareRow][iSquareCol]->getPiece();
+                    cout << boardMove[7 - iSquareRow][iSquareCol]->getPiece();
 				}
 			}
 			else
 			{
 				if ((iSquareRow + iSquareCol) % 2 == 1)
 				{
-					cout << '*';
+					cout << ' ';
 				}
 				else
 				{
-					cout << ' ';
+					cout << '*';
 				}
 			}
 		}
@@ -138,11 +138,11 @@ bool ChessBoard::isInCheck(char cColor)
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
 		{
-			if (mqpaaBoard[iRow][iCol] != 0)
+			if (boardMove[iRow][iCol] != 0)
 			{
-                if (mqpaaBoard[iRow][iCol]->getColor() == cColor)
+                if (boardMove[iRow][iCol]->getColor() == cColor)
 				{
-                    if (mqpaaBoard[iRow][iCol]->getPiece() == 'K')
+                    if (boardMove[iRow][iCol]->getPiece() == 'K')
 					{
 						iKingRow = iRow;
 						iKingCol = iCol;
@@ -157,11 +157,11 @@ bool ChessBoard::isInCheck(char cColor)
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
 		{
-			if (mqpaaBoard[iRow][iCol] != 0)
+			if (boardMove[iRow][iCol] != 0)
 			{
-				if (mqpaaBoard[iRow][iCol]->getColor() != cColor)
+				if (boardMove[iRow][iCol]->getColor() != cColor)
 				{
-					if (mqpaaBoard[iRow][iCol]->isLegalMove(iRow, iCol, iKingRow, iKingCol, mqpaaBoard))
+					if (boardMove[iRow][iCol]->isLegalMove(iRow, iCol, iKingRow, iKingCol, boardMove))
 					{
 						return true;
 					}
@@ -180,26 +180,26 @@ bool ChessBoard::canMove(char cColor)
 	{
 		for (int iCol = 0; iCol < 8; ++iCol)
 		{
-			if (mqpaaBoard[iRow][iCol] != 0)
+			if (boardMove[iRow][iCol] != 0)
 			{
 				// if it is a piece of the current player, see if it has a legal move
-                if (mqpaaBoard[iRow][iCol]->getColor() == cColor)
+                if (boardMove[iRow][iCol]->getColor() == cColor)
 				{
 					for (int iMoveRow = 0; iMoveRow < 8; ++iMoveRow)
 					{
 						for (int iMoveCol = 0; iMoveCol < 8; ++iMoveCol)
 						{
-                            if (mqpaaBoard[iRow][iCol]->isLegalMove(iRow, iCol, iMoveRow, iMoveCol, mqpaaBoard))
+                            if (boardMove[iRow][iCol]->isLegalMove(iRow, iCol, iMoveRow, iMoveCol, boardMove))
 							{
 								// make move and check whether king is in check
-								ChessPiece* qpTemp = mqpaaBoard[iMoveRow][iMoveCol];
-								mqpaaBoard[iMoveRow][iMoveCol] = mqpaaBoard[iRow][iCol];
-								mqpaaBoard[iRow][iCol] = 0;
+								ChessPiece* qpTemp = boardMove[iMoveRow][iMoveCol];
+								boardMove[iMoveRow][iMoveCol] = boardMove[iRow][iCol];
+								boardMove[iRow][iCol] = 0;
                                 bool bCanMove = !isInCheck(cColor);
                                 
 								// undo the move
-								mqpaaBoard[iRow][iCol] = mqpaaBoard[iMoveRow][iMoveCol];
-								mqpaaBoard[iMoveRow][iMoveCol] = qpTemp;
+								boardMove[iRow][iCol] = boardMove[iMoveRow][iMoveCol];
+								boardMove[iMoveRow][iMoveCol] = qpTemp;
                                 
 								if (bCanMove)
 								{

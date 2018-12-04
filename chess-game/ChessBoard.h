@@ -15,5 +15,5 @@ public:
 	void print();
 	bool isInCheck(char cColor);
 	bool canMove(char cColor);
-	ChessPiece* mqpaaBoard[8][8];
+	ChessPiece* boardMove[8][8];
 };

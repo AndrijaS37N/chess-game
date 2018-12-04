@@ -6,64 +6,63 @@
 
 void ChessGame::printPlayers(std::string time)
 {
-    std::ofstream logFile;
-    logFile.open("matches-players.txt", std::ios_base::app);
-    logFile << "->" << nameA << " VS " << nameB << ", these opponents played on: " << time << '\n';
+    std::string fileName = "game-date-history.txt";
+    std::fstream logFile(fileName, std::fstream::out);
+    logFile << "-> " << nameA << " VS " << nameB << ", these opponents finished playing on: " << time << std::endl;
     logFile.close();
+    
+    if(logFile)
+        std::cout << "Your info is printed in " << fileName << std::endl;
+    else
+        std::cout << "Something went wrong with the fstream." << std::endl;
 }
 
 void ChessGame::enterNames()
 {
     try
     {
-        std::cout << "WELCOME:\nCastling, pawn promotion, en passant and pawn double-moves are not implemented (rules and exceptions)." << std::endl;
-        std::cout << "The ingame exit code is 999 (while inputing movement coordinates)." << std::endl;
-        std::cout << "White (1st) player is: ";
-        std::cin >> nameA;
-        std::cout << "Black (2nd) player is: ";
-        std::cin >> nameB;
+        std::cout << "\n\t\tWelcome:\n\n* Castling, pawn promotion, en passant and pawn double-moves are not implemented (rules and exceptions)." << std::endl;
+        std::cout << "* The ingame exit code is 999 (enter it while inputing movement coordinates)." << std::endl;
+        std::cout << "* White (1st) player is: ";
+        getline(std::cin, nameA);
+        std::cout << "* Black (2nd) player is: ";
+        getline(std::cin, nameB);
         
-        if (nameA.size() < 3 || nameB.size() < 3)
-            throw Mistake::CustomException("Little short for proper names, ey? OK, go on!");
+        if (nameA.length() < 3 || nameB.length() < 3)
+            throw Mistake::CustomException("Interesing names ... OK, go on!");
     }
     catch (Mistake::CustomException & arg)
     {
-        std::cout << "Testing an exception: Woops! " << arg.message << "\n" << std::endl;
+        std::cout << "\n* Testing an exception: Woops! " << arg.message << "\n" << std::endl;
     }
-    std::cout << "Bugs, mistakes, code redundances and lack of implementations are expected.\nThis was my first C++ project." << std::endl;;
-    std::cout << "\n\tHave a good match!\n___________________________________" << std::endl;
+    std::cout << "* Bugs, mistakes, code redundances and lack of implementations are expected.\n* This was my first C++ project." << std::endl;;
+    std::cout << "\n\t\tHave a good match!\n___________________________________" << std::endl;
 }
 
 // main game loop
 void ChessGame::start()
 {
-    time_t btime;
-    struct tm* beginTime;
-    time(&btime);
-    beginTime = localtime(&btime);
-    int beginHours = beginTime->tm_hour;
-    int beginMinutes = beginTime->tm_min;
-    int beginSeconds = beginTime->tm_sec;
-    
     enterNames();
     exitCode = false;
     do
     {
-        getNextMove(gameBoard.mqpaaBoard);
-        alternateTurn();
         if (exitCode)
             break;
+        
+        getNextMove(gameBoard.boardMove);
+        alternateTurn();
+        
         // Xcode doesn't recognize this function 'sleep_for', perhaps it's OS dependent
         // #include <time.h>
         // #include <thread>
         // #include <chrono>
         // this_thread::sleep_for(2s);
-        // I will use the Linux one -> #include <unistd.h> -> usleep(1000000) '1s'
+        
+        // I will use this one -> #include <unistd.h> -> usleep(1000000) '1s'
         usleep(1000*1000);
         
     } while (!isGameOver());
     
-    printPlayers(asctime(end));
     gameBoard.print();
 }
 
@@ -92,7 +91,7 @@ void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "\nInvalid Input! Enter number coordinates (num of 2 digits):\n" << std::endl;
+            std::cout << "\nInvalid Input! Enter number coordinates (num of 2 digits)." << std::endl;
             std::cout << turnOf << "'s Move: ";
             std::cin >> iStartMove;
             std::cout << "To: ";
@@ -101,29 +100,11 @@ void ChessGame::getNextMove(ChessPiece* boardMove[8][8])
         
         if (iStartMove == 999 || iEndMove == 999)
         {
-            std::cout << "You've entered the exit game code 999.\nYour info is printed in matches-players.txt\nHave a nice day!" << std::endl;
+            std::cout << "You've entered the exit game code 999.\nHave a nice day!" << std::endl;
             exitCode = true;
             if (exitCode)
-            {
-                time_t etime;
-                time(&etime);
-                end = localtime(&etime);
-                
-                int endHours = end->tm_hour - beginHours;
-                int endMinutes = end->tm_min - beginMinutes;
-                int endSeconds = end->tm_sec - beginSeconds;
-                
-                if (endSeconds < 0)
-                {
-                    endMinutes--;
-                    endSeconds = 60 + endSeconds;
-                }
-                
-                printPlayers(asctime(end));
-            }
-            // if the command below is not recognized, the term will show this sh: 'pause: command not found'
-            system("pause");
-            std::cout << "Maybe bash won't recognize the system('pause') command.\nIt's OK!" << std::endl;
+                printPlayers(getCurrentTime());
+
             exit(0);
         }
         
@@ -185,7 +166,7 @@ bool ChessGame::isGameOver()
         if (gameBoard.isInCheck(turnOf))
         {
             alternateTurn();
-            std::cout << "Checkmate, " << turnOf << " Wins!" << std::endl;
+            std::cout << "Checkmate!" << std::endl;
             if (turnOf == 'W')
                 std::cout << nameA << " is the winner!" << std::endl;
             else
@@ -197,4 +178,12 @@ bool ChessGame::isGameOver()
         }
     }
     return !bCanMove;
+}
+
+std::string ChessGame::getCurrentTime()
+{
+    time_t timeVar;
+    time(&timeVar);
+    endTime = localtime(&timeVar);
+    return asctime(endTime);
 }

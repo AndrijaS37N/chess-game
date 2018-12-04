@@ -11,19 +11,15 @@ public:
 	~ChessGame() {}
 	void enterNames();
 	void start();
+protected:
 	void getNextMove(ChessPiece* boardMove[8][8]);
 	void alternateTurn();
 	bool isGameOver();
     void printPlayers(std::string time);
     std::string nameA;
     std::string nameB;
-	int beginHours;
-	int beginMinutes;
-	int beginSeconds;
-	int endHours;
-	int endMinutes;
-	int endSeconds;
-	struct tm* end;
+    std::string getCurrentTime();
+    struct tm* endTime;
     bool exitCode;
 private:
 	ChessBoard gameBoard;

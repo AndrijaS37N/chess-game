@@ -1,9 +1,9 @@
 #include "Pawn.h"
 
-bool Pawn::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
+bool Pawn::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
 {
-	ChessPiece* qpDest = qpaaBoard[iDestRow][iDestCol];
-	if (qpDest == 0)
+	ChessPiece* dest = boardMove[iDestRow][iDestCol];
+	if (dest == 0)
 	{
 		// destination square is unoccupied
 		if (iSrcCol == iDestCol)

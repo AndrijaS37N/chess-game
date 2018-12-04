@@ -1,6 +1,6 @@
 #include "Queen.h"
 
-bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
+bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
 {
 	if (iSrcRow == iDestRow)
 	{
@@ -8,7 +8,7 @@ bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol
 		int iColOffset = (iDestCol - iSrcCol > 0) ? 1 : -1;
 		for (int iCheckCol = iSrcCol + iColOffset; iCheckCol != iDestCol; iCheckCol = iCheckCol + iColOffset)
 		{
-			if (qpaaBoard[iSrcRow][iCheckCol] != 0)
+			if (boardMove[iSrcRow][iCheckCol] != 0)
 			{
 				return false;
 			}
@@ -21,7 +21,7 @@ bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol
 		int iRowOffset = (iDestRow - iSrcRow > 0) ? 1 : -1;
 		for (int iCheckRow = iSrcRow + iRowOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset)
 		{
-			if (qpaaBoard[iCheckRow][iSrcCol] != 0)
+			if (boardMove[iCheckRow][iSrcCol] != 0)
 			{
 				return false;
 			}
@@ -37,7 +37,7 @@ bool Queen::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol
 		int iCheckCol;
 		for (iCheckRow = iSrcRow + iRowOffset, iCheckCol = iSrcCol + iColOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset, iCheckCol = iCheckCol + iColOffset)
 		{
-			if (qpaaBoard[iCheckRow][iCheckCol] != 0)
+			if (boardMove[iCheckRow][iCheckCol] != 0)
 			{
 				return false;
 			}

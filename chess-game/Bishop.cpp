@@ -1,6 +1,6 @@
 #include "Bishop.h"
 
-bool Bishop::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* qpaaBoard[8][8])
+bool Bishop::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCol, ChessPiece* boardMove[8][8])
 {
 	if ((iDestCol - iSrcCol == iDestRow - iSrcRow) || (iDestCol - iSrcCol == iSrcRow - iDestRow))
 	{
@@ -11,7 +11,7 @@ bool Bishop::areSquaresLegal(int iSrcRow, int iSrcCol, int iDestRow, int iDestCo
 		int iCheckCol;
 		for (iCheckRow = iSrcRow + iRowOffset, iCheckCol = iSrcCol + iColOffset; iCheckRow != iDestRow; iCheckRow = iCheckRow + iRowOffset, iCheckCol = iCheckCol + iColOffset)
 		{
-			if (qpaaBoard[iCheckRow][iCheckCol] != 0)
+			if (boardMove[iCheckRow][iCheckCol] != 0)
 			{
 				return false;
 			}
