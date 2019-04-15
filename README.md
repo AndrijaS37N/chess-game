@@ -4,10 +4,10 @@ I primarily found some base code on YouTube for this and then worked on top of t
 
 #### Project snapshots:
 <h6>View #1 &#x2198;</h6>
-<kbd><img src="views/view-1.png" height="500" alt="View 1"></kbd>
+<img src="views/view-1.png" height="500" alt="View 1">
 <h6>View #2 &#x2198;</h6>
-<kbd><img src="views/view-2.png" height="500" alt="View 2"></kbd>
+<img src="views/view-2.png" height="500" alt="View 2">
 <h6>View #3 &#x2198;</h6>
-<kbd><img src="views/view-3.png" height="500" alt="View 3"></kbd>
+<img src="views/view-3.png" height="500" alt="View 3">
 
 
